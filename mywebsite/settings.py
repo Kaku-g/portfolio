@@ -14,7 +14,7 @@ from pathlib import Path
 import django_heroku
 import os
 
-from whitenoise.django import DjangoWhiteNoise
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -131,7 +131,7 @@ STATICFILES_DIRS= [
     os.path.join(BASE_DIR,'staticfiles')
 ]
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 
 
 django_heroku.settings(locals())
