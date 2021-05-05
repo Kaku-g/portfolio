@@ -1,0 +1,231 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/css/index.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
+
+
+   
+</head>
+<body>
+
+    <div class="container">
+        <div class="rows">
+            <div class="column_1">
+              
+                <img class="profile_pic" src="{% static 'images/jatin.jpg' %}" alt="">
+                <div class="intro">
+                    <h4 class="name">Jatin Rawat</h4>
+                    <h4 class="desc "></h4>
+                </div>
+                <div class="links">
+                    <ul>
+                        <a id="home" name="home_section" class="buttons" onclick="displayElement(this)" ><li>Github</li></a>
+                        <a id="about"name="about_section" onclick="displayElement(this)" class="buttons" ><li>About</li></a>
+                        <a id="proj" name="proj_section"onclick="displayElement(this)" class="buttons" ><li>Projects</li></a>
+                        <a id="skills" name="skill_section" onclick="displayElement(this)"class="buttons" ><li>Skills</li></a>
+                        <a id="con" name="con_section" onclick="displayElement(this)"class="buttons" ><li>Contact</li></a>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="column_2">
+                <section class="toggle" id="home_section">
+                    <div class="section_heading">Github</div>
+                    <div class="section_desc">
+                        <div class="github_bio"></div>
+                        <h4 class="sub_heading" >   Repos</h4>
+                        <div class="github_repos"></div>
+                    </div>
+                </section>
+
+                <section class="toggle" id="about_section">
+                    <div class="section_heading">About</div>
+                    <div class="section_desc about_desc">I am currently enrolled at NSUT as a 1st year Undergraduate Student,enrolled in Manufacturing Process And Automation engineering and  interested in the field of IOT,AI ,Automation and web development. 
+                        <br>
+                        How the Story begins?
+                        <br>
+                        I got introduced to the world of webdev during my 12 standard. I was  exploring various fields like app development,Ai and webdev but the thing which caught my eye was webdev :)
+                        <br>
+                        
+                       
+                    </div>
+                     <a href=""><img class="media_icons" src="{% static 'images/facebook.png' %}" alt=""></a> 
+                     <a href=""><img class="media_icons" src="{% static 'images/linkedin.png' %}" alt=""></a> 
+                </section>
+                <section class="toggle" id="proj_section">
+                    <div class="section_heading">Projects</div>
+                    <div class="section_desc">
+                        <div class="project_images">
+                            <a href="https://jatinecomm.herokuapp.com/"> <img  src="{% static 'images/p4.JPG' %}" alt="" class="projects_image"></a>
+                            <a href="https://kaku-g.github.io/bitcoin.github.io/"> <img  src="{% static 'images/p5.JPG' %}" alt="" class="projects_image"> </a>
+                        <img src="" alt="" class="projects_image"><a href=""></a>
+                    </div>
+                    </div>
+                </section>
+                <section class="toggle" id="skill_section">
+                    <div class="section_heading">Skills</div>
+                    <div class="section_desc skills">
+                        <div class="skill">
+                            <ul><li>HTML</li>
+                            <li>CSS</li>
+                          <li>Javascript</li>
+                         <li>React</li>
+                         <li>Django</li>
+                         <li>Figma(Design)</li>
+            </ul>
+                        </div>
+                        <div class="rating">
+                            <ul>
+                                <li>⭐⭐⭐⭐</li>
+                                <li>⭐⭐⭐⭐</li>
+                                <li>⭐⭐⭐⭐</li>
+                                <li>⭐⭐⭐</li>
+                                <li>⭐⭐⭐</li>
+                                <li>⭐⭐⭐⭐</li>
+                            </ul>
+                        </div>
+                      <div class="skill_icons">
+                          <img src="{% static 'images/html.png' %}" alt="" class="skill_icon">
+                          <img src="{% static 'images/css-3.png' %}" alt="" class="skill_icon">
+                          <img src="{% static 'images/physics.png' %}" alt="" class="skill_icon">
+                          <img src="{% static 'images/python.png' %}" alt="" class="skill_icon">
+                      </div>
+                    </div>
+
+                </section>
+                <section class="toggle" id="con_section">
+                    <div class="section_heading">Suggestions/Comments </div>
+                    <div id="comments">
+                        <h3 class="sub_heading">Recent comments</h3>
+                        <div class="alerts">
+                        {% for comment in cmt %}
+                      <p class="alert">{{comment.text}}                  User{{comment.id}}</p>
+                        {% endfor %}
+                    </div>
+                    </div>
+                    <div class="section_desc"></div><div class="row">
+        
+                        
+                           
+                          
+                           
+                            <form action="addComment" method="POST">{% csrf_token %}
+                                <div class="form-group">
+                                  <label for="comments">Comments/Suggestions</label>
+                                  <br>
+                                  <input name="cmt" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter comments">
+                                  <br>
+                                  <small id="emailHelp" class="form-text text-muted">Please provide your comments regarding the project</small>
+                                 
+                                </div>
+                                <div class="form-group">
+                                  <label for="email">Email</label>
+                                  <br>
+                                  <input name="email" type="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
+                                  <br>
+                                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                              </form>
+                
+                       
+                    </div></section>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script>
+    <script>
+        
+        let toggle= document.querySelectorAll('.toggle');
+        let buttons= document.querySelectorAll('.buttons');
+        let bio1 = document.querySelector('.github_bio');
+        let gitRepos = document.querySelector('.github_repos');
+        let userLink= "https://api.github.com/users/kaku-g";
+        let repoLink = "https://api.github.com/users/kaku-g/repos?type=allpage=1per_page=20sort=created}" 
+        toggler();
+        let home= document.querySelector('#home_section');
+        home.style.display="block";
+        typer();
+        getBio();
+        
+        new TypeIt('.about_desc').type("").go();
+        
+        //typeit effect
+        function typer(){
+            
+        new TypeIt('.desc').type("I'm a designerrrrrrrrrrrrrrrrrrr")
+            .pause(1000).empty().type("I'm a coderrrrrrrrrrrrrrrrr ").pause(1000).empty().type("I'm a fullstack developer").go();
+        }
+     
+        //for toggling between different elements
+        function displayElement(e){
+          toggler();
+          console.log(e.name);
+           let id = e.name;
+           document.getElementById(id).style.display="block";
+        }
+       function toggler(){
+            toggle.forEach(e=>{
+             e.style.display="none";
+         })
+     }
+
+     //for github api
+    
+    async function getBio(){
+     
+      result = await fetchData(userLink);
+      console.log(result);
+       bio= result.bio;
+       bio1.innerHTML=bio;
+    }
+keys=[]
+    getRepo();
+    async function getRepo(){
+        
+        result = await fetchData(repoLink);
+       result.forEach(e=>{
+            name = e.name;
+            link= e.html_url;
+            url= e.languages_url;
+            keys.push(url);
+            
+            let html = `<div class="github_repo">
+                <div class="repo_name">${name}</div>
+                <a class="repo_url" href="${link}">View</a>
+                <div>`;
+                    gitRepos.insertAdjacentHTML('beforeEnd',html);
+                })
+            }
+                    
+
+           
+         
+      
+  async function fetchData(url){
+
+           const response = await fetch(url)
+           const result = await response.json()
+           return  await result;
+     }
+      
+
+   
+      //console.log(result.bio)
+    
+    </script>
+    
+
+    
+</body>
+</html>
